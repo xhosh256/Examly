@@ -1,0 +1,4 @@
+function showQuestions() {
+  const app = document.getElementById('app');
+  app.innerHTML = '';
+}

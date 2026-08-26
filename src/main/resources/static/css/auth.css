@@ -1,0 +1,128 @@
+.registration-page {
+    width: 350px;
+    margin: 100px auto;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.registration-page h2 {
+    margin: 0 0 15px;
+    text-align: center;
+}
+
+.registration-page label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.registration-page input {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    font-size: 15px;
+    outline: none;
+}
+
+.registration-page input:focus {
+    border-color: #555;
+}
+
+.registration-page button {
+    margin-top: 10px;
+    padding: 11px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #222;
+    color: white;
+
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.registration-page button:hover {
+    background: #444;
+}
+
+.login-page {
+    width: 350px;
+    margin: 100px auto;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-page h2 {
+    margin: 0 0 15px;
+    text-align: center;
+}
+
+.login-page label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.login-page input {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    font-size: 15px;
+    outline: none;
+}
+
+.login-page input:focus {
+    border-color: #555;
+}
+
+.login-page button {
+    margin-top: 10px;
+    padding: 11px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #222;
+    color: white;
+
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.login-page button:hover {
+    background: #444;
+}
+
+.register-link, .login-link {
+    margin-top: 8px;
+
+    text-align: center;
+    color: #555;
+    font-size: 14px;
+
+    text-decoration: none;
+}
+
+.register-link:hover, .login-link:hover {
+    color: #000;
+    text-decoration: underline;
+}
