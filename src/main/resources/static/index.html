@@ -7,9 +7,11 @@
 
   <link rel="stylesheet" href="css/auth.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/questions.css">
 </head>
 
   <body>
+    <h2 id="examly-title">Examly</h2>
     <div id="app"></div>
   </body>
 
@@ -18,4 +20,11 @@
   <script src="/js/main.js"></script>
   <script src="/js/auth.js"></script>
   <script src="/js/app.js"></script>
+
+    <script>
+      const examlyTitle = document.getElementById("examly-title");
+      examlyTitle.addEventListener("click", () => {
+        showMainPage();
+      });
+    </script>
 </html>

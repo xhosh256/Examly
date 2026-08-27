@@ -1,11 +1,13 @@
 async function showMainPage() {
+  if(!isAuthenticated()) return;
+  
+  document.getElementById("examly-title").style.display = "block";
   const app = document.getElementById('app');
   const subjects = await fetchAllSubjects();
 
   app.innerHTML = 
   `
     <div class='main-page'>
-      <h2>Examly</h2>
 
       <div class="switch-bar">
       </div>
@@ -23,7 +25,7 @@ async function showMainPage() {
     const button = document.createElement('button');
     button.classList.add('switch-btn');
     button.value = subject.subjectName;
-    button.textContent = subject.subjectName
+    button.textContent = subject.subjectName;
 
     if(index == 0) {
       button.classList.add('active');
@@ -61,7 +63,10 @@ function renderTypes(typeOptions, taskTypes) {
     typeOptions.appendChild(button);
 
     button.addEventListener('click', () => {
-      showQuestions();
+      const typeNumber = type.number;
+      const subjectName = document.querySelector('.active').value;
+
+      showQuestions(subjectName, typeNumber);
     })
   }
 }

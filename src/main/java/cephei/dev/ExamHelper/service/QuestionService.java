@@ -5,6 +5,7 @@ import cephei.dev.ExamHelper.database.dto.AnswerCheckResponse;
 import cephei.dev.ExamHelper.database.dto.QuestionAnswerStatus;
 import cephei.dev.ExamHelper.database.dto.QuestionReadDto;
 import cephei.dev.ExamHelper.database.entity.Question;
+import cephei.dev.ExamHelper.database.entity.SubjectName;
 import cephei.dev.ExamHelper.database.repository.QuestionRepository;
 import cephei.dev.ExamHelper.exception.QuestionNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +38,19 @@ public class QuestionService {
         );
     }
 
+
     public Page<QuestionReadDto> findAllByTaskTypeId(Long typeId, Pageable pageable) {
         return questionRepository.findAllByTaskType_Id(typeId, pageable);
+    }
+
+    public Page<QuestionReadDto> findAllBySubjectNameAndTypeNumber(
+            String subjectName,
+            Integer typeNumber,
+            Pageable pageable
+    ) {
+        return questionRepository
+                .findAllByTaskType_Subject_subjectNameAndTaskType_Number(
+                        SubjectName.valueOf(subjectName.toUpperCase()), typeNumber, pageable
+                );
     }
 }
