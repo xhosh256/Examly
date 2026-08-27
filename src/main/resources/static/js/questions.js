@@ -1,5 +1,5 @@
 async function showQuestions(subjectName, typeNumber) {
-  if(!isAuthenticated()) return;
+  if(!(await isAuthenticated())) return;
 
   const app = document.getElementById('app');
   

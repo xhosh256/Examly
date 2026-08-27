@@ -1,6 +1,6 @@
 async function showMainPage() {
-  if(!isAuthenticated()) return;
-  
+  if(!(await isAuthenticated())) return;
+
   document.getElementById("examly-title").style.display = "block";
   const app = document.getElementById('app');
   const subjects = await fetchAllSubjects();

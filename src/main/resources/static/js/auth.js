@@ -110,8 +110,6 @@ async function login(loginDto) {
     throw new Error(response.status);
   }
 
-  console.log(response);
-
   const auth = await response.text();
   localStorage.setItem("auth", auth);
 

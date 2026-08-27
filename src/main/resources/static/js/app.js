@@ -9,17 +9,27 @@ async function startApp() {
 }
 
 async function isTokenExpired(auth) {
-  const response = await fetch('api/v1/auth/ping');
+  const response = await fetch(
+    'api/v1/auth/ping',
+    {
+      method: "GET",
+      headers: {
+        "Authorization" : `Bearer ${auth}`
+      }
+    }
+  );
 
-  if(!response.ok) {
+  return !response.ok;
+}
+
+async function isAuthenticated() {
+  const auth = localStorage.getItem('auth');
+
+  if(auth == null || await isTokenExpired(auth)) {
     return false;
   }
 
   return true;
-}
-
-function isAuthenticated() {
-  return localStorage.getItem("auth") != null;
 }
 
 startApp();
