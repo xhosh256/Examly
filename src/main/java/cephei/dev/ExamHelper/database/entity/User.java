@@ -25,4 +25,12 @@ public class User extends BaseEntity<Integer> {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Profile profile;
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+        profile.setUser(this);
+    }
 }
