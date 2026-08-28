@@ -1,0 +1,86 @@
+#profile-page {
+    width: min(100% - 40px, 700px);
+    margin: 40px auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+#profile-info {
+    padding: 30px;
+
+    border: 1px solid #000;
+    border-radius: 8px;
+
+    background: #fff;
+}
+
+#profile-info .firstname,
+#profile-info .lastname {
+    display: inline;
+
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+}
+
+#profile-info .firstname::after {
+    content: " ";
+}
+
+#profile-info .birth-date {
+    margin-top: 14px;
+
+    font-size: 14px;
+    color: #555;
+}
+
+
+#actions {
+    display: flex;
+    gap: 10px;
+
+    padding: 16px;
+
+    border: 1px solid #000;
+    border-radius: 8px;
+
+    background: #fff;
+}
+
+#actions button {
+    padding: 9px 16px;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+
+    background: #fff;
+    color: #000;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+#actions button:hover {
+    background: #000;
+    color: #fff;
+}
+
+#actions #logout-button {
+    margin-left: auto;
+}
+
+#actions #logout-button:hover {
+    border-color: #d00000;
+
+    background: #d00000;
+    color: #fff;
+}

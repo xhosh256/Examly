@@ -8,13 +8,20 @@
   <link rel="stylesheet" href="css/auth.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/questions.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/profile.css">
 </head>
 
   <body>
-    <h2 id="examly-title">Examly</h2>
+    <header>
+      <h2 id="examly-title">Examly</h2>
+      <button id="profile-button">Profile</button>
+    </header>
+    
     <div id="app"></div>
   </body>
 
+  <script src="/js/profile.js"></script>
   <script src="/js/questions.js"></script>
   <script src="/js/subjects.js"></script>
   <script src="/js/main.js"></script>
@@ -25,6 +32,11 @@
       const examlyTitle = document.getElementById("examly-title");
       examlyTitle.addEventListener("click", async () => {
         await showMainPage();
+      });
+
+      const profileButton = document.getElementById('profile-button');
+      profileButton.addEventListener("click", async () => {
+        await showMyProfile();
       });
     </script>
 </html>

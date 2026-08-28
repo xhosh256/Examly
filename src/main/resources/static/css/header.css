@@ -1,0 +1,54 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 18px 30px;
+
+    border-bottom: 1px solid #000;
+    background: #fff;
+
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+#examly-title {
+    margin: 0;
+
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+
+    color: #000;
+}
+
+#examly-title:hover {
+    cursor: pointer;
+}
+
+#profile-button {
+    padding: 8px 16px;
+
+    border: 1px solid #000;
+    border-radius: 6px;
+
+    background: #fff;
+    color: #000;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: 0.15s ease;
+}
+
+#profile-button:hover {
+    background: #000;
+    color: #fff;
+}
+
+#profile-button:active {
+    transform: translateY(1px);
+}

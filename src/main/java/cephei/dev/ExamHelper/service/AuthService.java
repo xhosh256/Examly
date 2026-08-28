@@ -4,6 +4,7 @@ import cephei.dev.ExamHelper.database.dto.LoginReadDto;
 import cephei.dev.ExamHelper.database.dto.UserLoginDto;
 import cephei.dev.ExamHelper.database.dto.UserReadDto;
 import cephei.dev.ExamHelper.database.dto.UserRegisterDto;
+import cephei.dev.ExamHelper.database.entity.Profile;
 import cephei.dev.ExamHelper.database.entity.Role;
 import cephei.dev.ExamHelper.database.entity.User;
 import cephei.dev.ExamHelper.database.repository.UserRepository;
@@ -34,6 +35,13 @@ public class AuthService {
                 .username(userRegisterDto.getUsername())
                 .password(passwordEncoder.encode(userRegisterDto.getPassword()))
                 .role(Role.USER).build();
+        Profile profile = Profile.builder()
+                .firstname(userRegisterDto.getFirstname())
+                .lastname(userRegisterDto.getLastname())
+                .birthDate(userRegisterDto.getBirthDate())
+                .build();
+
+        user.setProfile(profile);
         return userMapper.toReadDto(userRepository.save(user));
     }
 
