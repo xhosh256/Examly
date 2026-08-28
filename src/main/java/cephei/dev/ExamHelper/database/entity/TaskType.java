@@ -22,6 +22,10 @@ public class TaskType extends BaseEntity<Long> {
     @Column(nullable = false)
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, name = "answer_type")
+    private AnswerType answerType;
+
     @ManyToOne(
             fetch = FetchType.LAZY,
             optional = false

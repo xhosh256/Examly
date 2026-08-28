@@ -8,6 +8,7 @@ import cephei.dev.ExamHelper.database.entity.Question;
 import cephei.dev.ExamHelper.database.entity.SubjectName;
 import cephei.dev.ExamHelper.database.repository.QuestionRepository;
 import cephei.dev.ExamHelper.exception.QuestionNotFoundException;
+import cephei.dev.ExamHelper.mapper.QuestionMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class QuestionService {
 
     private final QuestionRepository questionRepository;
+    private final QuestionMapper questionMapper;
 
     public AnswerCheckResponse checkAnswer(Long id, AnswerCheckRequest answerCheckRequest) {
         Question question = questionRepository.findById(id)
@@ -40,7 +42,8 @@ public class QuestionService {
 
 
     public Page<QuestionReadDto> findAllByTaskTypeId(Long typeId, Pageable pageable) {
-        return questionRepository.findAllByTaskType_Id(typeId, pageable);
+        return questionRepository.findAllByTaskType_Id(typeId, pageable)
+                .map(questionMapper::toReadDto);
     }
 
     public Page<QuestionReadDto> findAllBySubjectNameAndTypeNumber(
@@ -51,6 +54,6 @@ public class QuestionService {
         return questionRepository
                 .findAllByTaskType_Subject_subjectNameAndTaskType_Number(
                         SubjectName.valueOf(subjectName.toUpperCase()), typeNumber, pageable
-                );
+                ).map(questionMapper::toReadDto);
     }
 }

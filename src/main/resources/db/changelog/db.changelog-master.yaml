@@ -17,3 +17,9 @@ databaseChangeLog:
       file: db/changelog/sql/1.7-user-role-alter.sql
   - include:
       file: db/changelog/sql/1.8-sql-init-base-math.sql
+  - include:
+      file: db/changelog/sql/2-add-answer-type.sql
+  - include:
+      file: db/changelog/sql/2.1-change-task-answer-types-and-seed.sql
+  - include:
+      file: db/changelog/sql/2.2-fix-image-bug.sql

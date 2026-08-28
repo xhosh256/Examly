@@ -59,23 +59,36 @@ async function loadQuestions(questionBlock, subjectName, typeNumber, page, size)
     `
       <p class="question">${question.question}</p>
       <img src="${question.imageUrl == null ? '' : question.imageUrl}">
-      <div class='check-answer'>
-        <input type='text' class="answer">
-        <button class="check-button">Check</button>
-        <p class="result"></p>
-      </div>
     `;
 
-    const answerInput = div.querySelector(".answer");
-    const checkButton = div.querySelector(".check-button");
-    const result = div.querySelector(".result");
+    if(question.answerType === 'SHORT') {
+      const answerBlock = document.createElement('div');
+      answerBlock.innerHTML = 
+      `
+        <div class='check-answer'>
+          <input type='text' class="answer">
+          <button class="check-button">Check</button>
+          <p class="result"></p>
+        </div>
+      `;
+      div.appendChild(answerBlock);
 
-    checkButton.addEventListener("click", async () => {
-      const answer = answerInput.value;
+      
+      const answerInput = div.querySelector(".answer");
+      const checkButton = div.querySelector(".check-button");
+      const result = div.querySelector(".result");
 
-      const checkInfo = await checkAnswer(question.id, answer);
-      result.innerHTML = checkInfo.status;
-    });
+      checkButton.addEventListener("click", async () => {
+        const answer = answerInput.value;
+
+        const checkInfo = await checkAnswer(question.id, answer);
+        result.innerHTML = checkInfo.status;
+      });
+    } else {
+      const answerBlock = document.createElement('div');
+      answerBlock.innerHTML = `This is a self-checking task.`;
+      div.appendChild(answerBlock);
+    }
 
     questionBlock.appendChild(div);
   }
