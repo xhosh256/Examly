@@ -84,3 +84,140 @@
     background: #d00000;
     color: #fff;
 }
+
+
+#app > div:has(#profile-edit-submit-button) {
+    width: min(100% - 40px, 500px);
+    margin: 40px auto;
+    padding: 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #000;
+    border-radius: 8px;
+
+    background: #fff;
+}
+
+#app > div:has(#profile-edit-submit-button) label {
+    margin-top: 8px;
+
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+}
+
+#app > div:has(#profile-edit-submit-button) input {
+    width: 100%;
+    padding: 9px 11px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+
+    background: #fff;
+    color: #000;
+
+    font-size: 14px;
+    outline: none;
+}
+
+#app > div:has(#profile-edit-submit-button) input:focus {
+    box-shadow: 0 0 0 2px #000;
+}
+
+#profile-edit-submit-button {
+    align-self: flex-start;
+
+    margin-top: 12px;
+    padding: 9px 16px;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+
+    background: #000;
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+#profile-edit-submit-button:hover {
+    background: #fff;
+    color: #000;
+}
+
+.change-password-block {
+    width: min(100% - 40px, 500px);
+    margin: 20px auto;
+    padding: 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #000;
+    border-radius: 8px;
+
+    background: #fff;
+}
+
+.change-password-block input {
+    width: 100%;
+    padding: 9px 11px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+
+    background: #fff;
+    color: #000;
+
+    font-size: 14px;
+    outline: none;
+}
+
+.change-password-block input:focus {
+    box-shadow: 0 0 0 2px #000;
+}
+
+.change-password-block button {
+    align-self: flex-start;
+
+    margin-top: 12px;
+    padding: 9px 16px;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+
+    background: #000;
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.change-password-block button:hover {
+    background: #fff;
+    color: #000;
+}
