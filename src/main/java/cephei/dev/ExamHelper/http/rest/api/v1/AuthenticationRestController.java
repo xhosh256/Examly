@@ -26,6 +26,7 @@ public class AuthenticationRestController {
     public UserReadDto register(
             @RequestBody UserRegisterDto userRegisterDto
     ) {
+        System.out.println(userRegisterDto);
         return authService.register(userRegisterDto);
     }
 

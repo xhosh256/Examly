@@ -1,7 +1,9 @@
 package cephei.dev.ExamHelper.service;
 
+import cephei.dev.ExamHelper.database.dto.TopicCreateDto;
 import cephei.dev.ExamHelper.database.dto.TopicReadDto;
 import cephei.dev.ExamHelper.database.entity.SubjectName;
+import cephei.dev.ExamHelper.database.entity.Topic;
 import cephei.dev.ExamHelper.database.repository.TopicRepository;
 import cephei.dev.ExamHelper.mapper.TopicMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +24,12 @@ public class TopicService {
         return topicRepository
                 .findAllByQuestionTopics_Question_TaskType_NumberAndQuestionTopics_Question_TaskType_Subject_SubjectName(typeNumber, SubjectName.valueOf(subjectName.toUpperCase()))
                 .stream().map(topicMapper::toReadDto).toList();
+    }
+
+    @Transactional
+    public TopicReadDto create(TopicCreateDto topicCreateDto) {
+        Topic topic = topicMapper.toEntity(topicCreateDto);
+        topicRepository.save(topic);
+        return topicMapper.toReadDto(topic);
     }
 }

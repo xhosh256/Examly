@@ -29,4 +29,14 @@ public class QuestionTopic extends BaseEntity<Long> {
     )
     @JoinColumn(name = "question_id")
     private Question question;
+
+    public void setQuestion(Question question) {
+        this.question = question;
+        question.getQuestionTopics().add(this);
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+        topic.getQuestionTopics().add(this);
+    }
 }

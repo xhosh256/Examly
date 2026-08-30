@@ -1,14 +1,14 @@
 package cephei.dev.ExamHelper.http.rest.api.v1;
 
-import cephei.dev.ExamHelper.database.dto.AnswerCheckRequest;
-import cephei.dev.ExamHelper.database.dto.AnswerCheckResponse;
-import cephei.dev.ExamHelper.database.dto.QuestionFilter;
-import cephei.dev.ExamHelper.database.dto.QuestionReadDto;
+import cephei.dev.ExamHelper.database.dto.*;
 import cephei.dev.ExamHelper.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -36,4 +36,25 @@ public class QuestionRestController {
         return questionService.findAllBySubjectNameAndTypeNumber(subjectName, typeNumber, questionFilter, pageable);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/subjects/{subjectName}/types/{typeNumber}/questions")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<QuestionReadDto> createQuestion(
+            @RequestBody QuestionCreateDto questionCreateDto,
+            @PathVariable String subjectName,
+            @PathVariable Integer typeNumber
+    ) {
+        QuestionReadDto questionReadDto = questionService.createQuestion(questionCreateDto, subjectName, typeNumber);
+        return ResponseEntity.ok(questionReadDto);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/topics/{topicId}/questions/{questionId}")
+    public ResponseEntity<Void> connect(
+            @PathVariable Long topicId,
+            @PathVariable Long questionId
+    ) {
+        questionService.connect(topicId, questionId);
+        return ResponseEntity.ok().build();
+    }
 }

@@ -41,4 +41,9 @@ public class TaskType extends BaseEntity<Long> {
     )
     @Builder.Default
     private List<Question> questions = new ArrayList<>();
+
+    public void addQuestion(Question question) {
+        questions.add(question);
+        question.setTaskType(this);
+    }
 }

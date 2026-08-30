@@ -12,6 +12,21 @@ function showRegistrationPage() {
       <label for="password-input">Password</label>
       <input id="password-input" type="password">
 
+      <div class='firstname-lastname-block'>
+        <div class="name-field">
+          <label for="firstname-input">Firstname</label>
+          <input id="firstname-input" type="text">
+        </div>
+
+        <div class="name-field">
+          <label for="lastname-input">Lastname (not required)</label>
+          <input id="lastname-input" type="text">
+        </div>
+      </div>
+
+      <label for="birthdate-input">Birth date(not required)</label>
+      <input id="birthdate-input" type="date">
+
       <button id="register-button">Registration</button>
 
       <a class="login-link">Log in</a>
@@ -23,12 +38,18 @@ function showRegistrationPage() {
 
   const usernameInput = document.getElementById('username-input');
   const passwordInput = document.getElementById('password-input');
+  const firstnameInput = document.getElementById('firstname-input');
+  const lastnameInput = document.getElementById('lastname-input');
+  const birthdateInput = document.getElementById('birthdate-input');
 
   registerButton.addEventListener("click", async () => {
     const username = usernameInput.value;
     const password = passwordInput.value;
+    const firstname = firstnameInput.value;
+    const lastname = lastnameInput.value;
+    const birthDate = birthdateInput.value;
 
-    await register({username, password});
+    await register({username, password, firstname, lastname, birthDate});
   });
 
   loginLink.addEventListener("click", () => {

@@ -31,11 +31,44 @@
 
     font-size: 15px;
     outline: none;
+
+    box-sizing: border-box;
 }
 
 .registration-page input:focus {
     border-color: #555;
 }
+
+/* Firstname + Lastname */
+
+.firstname-lastname-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+
+    width: 100%;
+}
+
+.name-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.name-field input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.firstname-lastname-block label {
+    margin-bottom: 0;
+}
+
+.firstname-lastname-block input {
+    width: 100%;
+}
+
+/* Registration button */
 
 .registration-page button {
     margin-top: 10px;
@@ -53,6 +86,25 @@
 
 .registration-page button:hover {
     background: #444;
+}
+
+/* Login link */
+
+.login-link {
+    margin-top: 5px;
+
+    text-align: center;
+
+    color: #222;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.login-link:hover {
+    text-decoration: underline;
 }
 
 .login-page {
