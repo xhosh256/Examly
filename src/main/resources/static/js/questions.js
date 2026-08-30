@@ -5,42 +5,95 @@ async function showQuestions(subjectName, typeNumber) {
   
   app.innerHTML = 
   `
-    <div id="pagination-block">
-      <input type="number" min="1" placeholder="page number..." id = "page" value="1">
-      <select id="size">
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="50">50</option>
-      </select>
-      <button id="pagination-select-button">Select</button>
+    <div id="selection-block">
+      <div id="pagination-block">
+        <input type="number" min="1" placeholder="page" id = "page" value="1">
+        <select id="size">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
+      </div>
+
+      <div id="topics-dropdown">
+        <button id="topics-button" type="button">
+          Select topics
+        </button>
+
+        <div id="topics-block">
+        </div>
+      </div>
+
+      <button id="select-button">Select</button>
     </div>
+
     <div id="questions-block">
     </div>
   `;
 
   const paginationBlock = document.getElementById("pagination-block");
+  const topicsButton = document.getElementById("topics-button");
+  const topicsBlock = document.getElementById("topics-block");
   const questionBlock = document.getElementById("questions-block");
 
-  const paginationSelectButton = paginationBlock.querySelector("#pagination-select-button");
+  const topics = await fetchTopicsOfTaskType(subjectName, typeNumber);
+
+  topicsButton.addEventListener("click", () => {
+      topicsBlock.classList.toggle("open");
+  });
+
+  for (const topic of topics) {
+    const label = document.createElement("label");
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = topic.id;
+
+    label.appendChild(checkbox);
+    label.append(` ${topic.topic}`);
+
+    topicsBlock.appendChild(label);
+}
+
+  const selectButton = document.getElementById("select-button");
   const pageInput = paginationBlock.querySelector("#page");
   const sizeSelect = paginationBlock.querySelector("#size");
 
-  paginationSelectButton.addEventListener("click", async () => {
+  selectButton.addEventListener("click", async () => {
     const page = pageInput.value;
     const size = Number(sizeSelect.value);
+    const topicIds = [...topicsBlock.querySelectorAll("input[type='checkbox']:checked")].map(checkbox => Number(checkbox.value));
 
-    await loadQuestions(questionBlock, subjectName, typeNumber, page-1, size);
+    await loadQuestions(questionBlock, subjectName, typeNumber, page-1, size, topicIds);
   });
 
-  await loadQuestions(questionBlock, subjectName, typeNumber, 0, 10);
+  await loadQuestions(questionBlock, subjectName, typeNumber, 0, 10, []);
 }
 
-async function loadQuestions(questionBlock, subjectName, typeNumber, page, size) {
-  if (!(page >= 0)) return;
+async function fetchTopicsOfTaskType(subjectName, typeNumber) {
+  const auth = localStorage.getItem("auth");
 
+  const response = await fetch(
+    `api/v1/subjects/${subjectName}/types/${typeNumber}/topics`,
+    {
+      method: "GET",
+      headers: {
+        'Authorization' : `Bearer ${auth}`
+      }
+    }
+  );
+
+  if(!response.ok) {
+    throw new Error(response.status);
+  }
+
+  return response.json();
+}
+
+async function loadQuestions(questionBlock, subjectName, typeNumber, page, size, topicIds) {
   questionBlock.innerHTML = "";
 
-  const questions = await fetchQuestionsBySubjectNameAndNumber(subjectName, typeNumber, page, size);
+  const questions = await fetchQuestionsBySubjectNameAndNumber(subjectName, typeNumber, page, size, topicIds);
 
   const totalElements = questions.totalElements;
   const totalPages = questions.totalPages;
@@ -118,11 +171,19 @@ async function checkAnswer(questionId, answer) {
   return await response.json();
 }
 
-async function fetchQuestionsBySubjectNameAndNumber(subjectName, typeNumber, page, size) {
+async function fetchQuestionsBySubjectNameAndNumber(subjectName, typeNumber, page, size, topicIds) {
   const auth = localStorage.getItem("auth");
+  
+  const params = new URLSearchParams();
+  params.append("page", page);
+  params.append("size", size);
+
+  for (const topicId of topicIds) {
+    params.append("topicIds", topicId);
+  }
 
   const response = await fetch(
-    `api/v1/subjects/${subjectName}/types/${typeNumber}/questions?page=${page}&size=${size}`,
+    `api/v1/subjects/${subjectName}/types/${typeNumber}/questions?${params}`,
     {
       method: "GET",
       headers: {

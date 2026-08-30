@@ -2,6 +2,7 @@ package cephei.dev.ExamHelper.http.rest.api.v1;
 
 import cephei.dev.ExamHelper.database.dto.ProfilePatchDto;
 import cephei.dev.ExamHelper.database.dto.ProfileReadDto;
+import cephei.dev.ExamHelper.database.dto.UserDetailsImpl;
 import cephei.dev.ExamHelper.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

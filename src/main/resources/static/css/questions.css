@@ -1,9 +1,23 @@
+#selection-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+
+/* ==================== */
+/* Pagination            */
+/* ==================== */
+
 #pagination-block {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 8px;
 
-    padding: 10px 12px;
+    height: 38px;
+    padding: 0 12px;
 
     border: 1px solid #000;
     border-radius: 7px;
@@ -37,7 +51,114 @@
     box-shadow: 0 0 0 1px #000;
 }
 
-#pagination-select-button {
+
+/* ==================== */
+/* Topics dropdown       */
+/* ==================== */
+
+#topics-dropdown {
+    position: relative;
+
+    width: 250px;
+    height: 38px;
+}
+
+#topics-button {
+    width: 100%;
+    height: 38px;
+
+    padding: 0 12px;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+
+    background: #fff;
+    color: #000;
+
+    font-size: 14px;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.15s ease;
+}
+
+#topics-button:hover {
+    background: #000;
+    color: #fff;
+}
+
+#topics-block {
+    display: none;
+
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    z-index: 100;
+
+    flex-direction: column;
+    gap: 7px;
+
+    width: 100%;
+    max-height: 250px;
+
+    padding: 10px;
+
+    overflow-y: auto;
+
+    box-sizing: border-box;
+
+    background: #fff;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+
+    box-shadow: 0 3px 8px #0000001f;
+}
+
+#topics-block.open {
+    display: flex;
+}
+
+#topics-block label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 6px 5px;
+
+    border-radius: 4px;
+
+    color: #000;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.15s ease;
+}
+
+#topics-block label:hover {
+    background: #f2f2f2;
+}
+
+#topics-block input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+
+    margin: 0;
+
+    accent-color: #000;
+
+    cursor: pointer;
+}
+
+
+/* ==================== */
+/* Selection button      */
+/* ==================== */
+
+#selection-block > #select-button {
     height: 38px;
 
     padding: 0 18px;
@@ -56,10 +177,15 @@
     transition: 0.15s ease;
 }
 
-#pagination-select-button:hover {
+#selection-block > #select-button:hover {
     background: #fff;
     color: #000;
 }
+
+
+/* ==================== */
+/* Questions             */
+/* ==================== */
 
 #questions-block {
     display: flex;
@@ -80,21 +206,25 @@
     font-weight: 600;
 }
 
-
 #questions-block > div:not(:first-child):not(:nth-child(2)) {
-  padding: 24px;
+    padding: 24px;
 
-  border: 1px solid #000;
-  border-radius: 8px;
+    border: 1px solid #000;
+    border-radius: 8px;
 
-  background: #fff;
+    background: #fff;
 
-  transition: 0.15s ease;
+    transition: 0.15s ease;
 }
 
 #questions-block > div:not(:first-child):not(:nth-child(2)):hover {
     box-shadow: 0 0 5px #0000009e;
 }
+
+
+/* ==================== */
+/* Question              */
+/* ==================== */
 
 .question {
     margin: 0 0 20px;
@@ -109,6 +239,10 @@
 }
 
 
+/* ==================== */
+/* Question image        */
+/* ==================== */
+
 #questions-block img {
     display: block;
 
@@ -121,6 +255,11 @@
 
     border-radius: 4px;
 }
+
+
+/* ==================== */
+/* Answer                */
+/* ==================== */
 
 .check-answer {
     display: flex;
@@ -153,6 +292,10 @@
 }
 
 
+/* ==================== */
+/* Check button          */
+/* ==================== */
+
 .check-button {
     height: 40px;
 
@@ -176,6 +319,11 @@
     background: #fff;
     color: #000;
 }
+
+
+/* ==================== */
+/* Result                */
+/* ==================== */
 
 .result {
     min-width: 90px;

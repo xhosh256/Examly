@@ -37,6 +37,13 @@ async function showMyProfile() {
 async function showEditPasswordBlock() {
   if(!(await isAuthenticated())) return;
 
+  const oldBlock = document.querySelector('.change-password-block');
+
+  if (oldBlock) {
+    oldBlock.remove();
+    return;
+  }
+
   const div = document.createElement('div');
   div.classList.add('change-password-block');
 

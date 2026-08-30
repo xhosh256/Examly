@@ -2,6 +2,7 @@ package cephei.dev.ExamHelper.http.rest.api.v1;
 
 import cephei.dev.ExamHelper.database.dto.AnswerCheckRequest;
 import cephei.dev.ExamHelper.database.dto.AnswerCheckResponse;
+import cephei.dev.ExamHelper.database.dto.QuestionFilter;
 import cephei.dev.ExamHelper.database.dto.QuestionReadDto;
 import cephei.dev.ExamHelper.service.QuestionService;
 import lombok.RequiredArgsConstructor;
@@ -25,21 +26,14 @@ public class QuestionRestController {
         return questionService.checkAnswer(id, answerCheckRequest);
     }
 
-//    @GetMapping("/types/{typeId}/questions")
-//    public Page<QuestionReadDto> findAllByTaskTypeId(
-//            @PathVariable Long typeId,
-//            @PageableDefault(size = 5, page = 0) Pageable pageable
-//    ) {
-//        return questionService.findAllByTaskTypeId(typeId, pageable);
-//    }
-
     @GetMapping("/subjects/{subjectName}/types/{typeNumber}/questions")
     public Page<QuestionReadDto> findAllBySubjectNameAndTypeNumber(
             @PathVariable String subjectName,
             @PathVariable Integer typeNumber,
+            QuestionFilter questionFilter,
             @PageableDefault(size = 5, page = 0) Pageable pageable
     ) {
-        return questionService.findAllBySubjectNameAndTypeNumber(subjectName, typeNumber, pageable);
+        return questionService.findAllBySubjectNameAndTypeNumber(subjectName, typeNumber, questionFilter, pageable);
     }
 
 }

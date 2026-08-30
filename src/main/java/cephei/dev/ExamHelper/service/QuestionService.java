@@ -1,17 +1,16 @@
 package cephei.dev.ExamHelper.service;
 
-import cephei.dev.ExamHelper.database.dto.AnswerCheckRequest;
-import cephei.dev.ExamHelper.database.dto.AnswerCheckResponse;
-import cephei.dev.ExamHelper.database.dto.QuestionAnswerStatus;
-import cephei.dev.ExamHelper.database.dto.QuestionReadDto;
+import cephei.dev.ExamHelper.database.dto.*;
 import cephei.dev.ExamHelper.database.entity.Question;
 import cephei.dev.ExamHelper.database.entity.SubjectName;
 import cephei.dev.ExamHelper.database.repository.QuestionRepository;
+import cephei.dev.ExamHelper.database.specification.QuestionSpecification;
 import cephei.dev.ExamHelper.exception.QuestionNotFoundException;
 import cephei.dev.ExamHelper.mapper.QuestionMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,11 +48,17 @@ public class QuestionService {
     public Page<QuestionReadDto> findAllBySubjectNameAndTypeNumber(
             String subjectName,
             Integer typeNumber,
+            QuestionFilter questionFilter,
             Pageable pageable
     ) {
+        Specification<Question> specification = Specification
+                .where(QuestionSpecification.hasTopicIds((questionFilter.getTopicIds())))
+                .and(QuestionSpecification.hasSubjectName(SubjectName.valueOf(subjectName.toUpperCase())))
+                .and(QuestionSpecification.hasTypeNumber(typeNumber));
+
         return questionRepository
-                .findAllByTaskType_Subject_subjectNameAndTaskType_Number(
-                        SubjectName.valueOf(subjectName.toUpperCase()), typeNumber, pageable
+                .findAll(
+                         specification, pageable
                 ).map(questionMapper::toReadDto);
     }
 }
