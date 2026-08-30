@@ -9,6 +9,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,9 +22,10 @@ public class QuestionRestController {
     @PostMapping("/questions/{id}/check")
     public AnswerCheckResponse checkAnswer(
             @PathVariable Long id,
-            @RequestBody AnswerCheckRequest answerCheckRequest
+            @RequestBody AnswerCheckRequest answerCheckRequest,
+            @AuthenticationPrincipal UserDetailsImpl userDetails
             ) {
-        return questionService.checkAnswer(id, answerCheckRequest);
+        return questionService.checkAnswer(id, answerCheckRequest, userDetails);
     }
 
     @GetMapping("/subjects/{subjectName}/types/{typeNumber}/questions")
@@ -56,5 +58,14 @@ public class QuestionRestController {
     ) {
         questionService.connect(topicId, questionId);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("questions/{id}/info")
+    public ResponseEntity<QuestionInfo> getQuestionInfo(
+            @PathVariable("id") Long questionId,
+            @AuthenticationPrincipal UserDetailsImpl userDetails
+    ) {
+        QuestionInfo status = questionService.getQuestionInfo(questionId, userDetails.getUser());
+        return ResponseEntity.ok(status);
     }
 }

@@ -122,14 +122,31 @@ async function loadQuestions(questionBlock, subjectName, typeNumber, page, size,
           <input type='text' class="answer">
           <button class="check-button">Check</button>
           <p class="result"></p>
+          <button class="get-info-button">Show Info</button>
         </div>
+
+        <div class="info-block"></div>
       `;
       div.appendChild(answerBlock);
 
       
       const answerInput = div.querySelector(".answer");
       const checkButton = div.querySelector(".check-button");
+      const infoButton = div.querySelector(".get-info-button");
+      const infoBlock = div.querySelector(".info-block");
       const result = div.querySelector(".result");
+
+      infoButton.addEventListener("click", async () => {
+        const questionInfo = await fetchQuestionInfo(question.id);
+        const status = questionInfo.solved ? `Solved` : `Unsolved`;
+
+        infoBlock.innerHTML = 
+        `
+          <p>${status}</p>
+        `;
+
+        infoBlock.classList.toggle("open");
+      });
 
       checkButton.addEventListener("click", async () => {
         const answer = answerInput.value;
@@ -145,6 +162,20 @@ async function loadQuestions(questionBlock, subjectName, typeNumber, page, size,
 
     questionBlock.appendChild(div);
   }
+}
+
+async function fetchQuestionInfo(questionId) {
+  const auth = localStorage.getItem('auth');
+
+  const response = await fetch(`api/v1/questions/${questionId}/info`, {method: "GET", headers: {'Authorization' : `Bearer ${auth}`}});
+
+  if(!response.ok) {
+    throw new Error(response.status);
+  }
+
+  const info = await response.json();
+  console.log(info);
+  return info;
 }
 
 async function checkAnswer(questionId, answer) {

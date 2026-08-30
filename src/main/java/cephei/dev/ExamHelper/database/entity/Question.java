@@ -5,7 +5,9 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -30,6 +32,7 @@ public class Question extends BaseEntity<Long> {
             optional = false
     )
     @JoinColumn(name = "task_type_id")
+    @EqualsAndHashCode.Exclude
     private TaskType taskType;
 
     @OneToMany(
@@ -37,6 +40,11 @@ public class Question extends BaseEntity<Long> {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     @Builder.Default
+    @EqualsAndHashCode.Exclude
     private List<QuestionTopic> questionTopics = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "solvedQuestions", fetch = FetchType.LAZY)
+    @Builder.Default
+    @EqualsAndHashCode.Exclude
+    private Set<User> solvedBy = new HashSet<>();
 }

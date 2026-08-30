@@ -7,27 +7,20 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDate;
-
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "profiles")
+@Table(name = "subjects")
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
 @Data
-public class Profile extends BaseEntity<Integer> {
+public class Solves extends BaseEntity<Long> {
 
-    @Column(nullable = false)
-    private String firstname;
-
-    private String lastname;
-
-    @Column(name = "birthdate")
-    private LocalDate birthDate;
-
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    @EqualsAndHashCode.Exclude
     private User user;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_id")
+    private Question question;
 }

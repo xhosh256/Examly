@@ -335,3 +335,65 @@
     font-size: 14px;
     font-weight: 600;
 }
+
+/* ==================== */
+/* Info button           */
+/* ==================== */
+
+.get-info-button {
+    height: 40px;
+
+    padding: 0 16px;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+
+    background: #fff;
+    color: #000;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.15s ease;
+}
+
+.get-info-button:hover {
+    background: #000;
+    color: #fff;
+}
+
+
+/* ==================== */
+/* Info block            */
+/* ==================== */
+
+.info-block {
+    display: none;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    margin-top: 12px;
+    padding: 12px 14px;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+
+    background: #fff;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.info-block.open {
+    display: block;
+}
+
+.info-block p {
+    margin: 0;
+
+    color: #000;
+    font-weight: 600;
+}

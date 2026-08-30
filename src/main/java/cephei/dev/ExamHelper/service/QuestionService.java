@@ -2,10 +2,7 @@ package cephei.dev.ExamHelper.service;
 
 import cephei.dev.ExamHelper.database.dto.*;
 import cephei.dev.ExamHelper.database.entity.*;
-import cephei.dev.ExamHelper.database.repository.QuestionRepository;
-import cephei.dev.ExamHelper.database.repository.QuestionTopicRepository;
-import cephei.dev.ExamHelper.database.repository.TaskTypeRepository;
-import cephei.dev.ExamHelper.database.repository.TopicRepository;
+import cephei.dev.ExamHelper.database.repository.*;
 import cephei.dev.ExamHelper.database.specification.QuestionSpecification;
 import cephei.dev.ExamHelper.exception.QuestionNotFoundException;
 import cephei.dev.ExamHelper.exception.TaskTypeNotFound;
@@ -15,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,19 +26,25 @@ public class QuestionService {
     private final TaskTypeRepository taskTypeRepository;
     private final TopicRepository topicRepository;
     private final QuestionTopicRepository questionTopicRepository;
+    private final UserRepository userRepository;
 
-    public AnswerCheckResponse checkAnswer(Long id, AnswerCheckRequest answerCheckRequest) {
+    @Transactional
+    public AnswerCheckResponse checkAnswer(Long id, AnswerCheckRequest answerCheckRequest, UserDetailsImpl userDetails) {
         Question question = questionRepository.findById(id)
                 .orElseThrow(() -> new QuestionNotFoundException("Question with id %d not found".formatted(id)));
 
         if(!question.getAnswer().equals(answerCheckRequest.getAnswer())) {
-            System.out.println("INCORRECT");
             return new AnswerCheckResponse(
                     QuestionAnswerStatus.INCORRECT
             );
         }
+        User user = userDetails.getUser();
 
-        System.out.println("CORRECT");
+        if(!user.getSolvedQuestions().contains(question)) {
+            user.solve(question);
+            userRepository.save(user);
+        }
+
         return new AnswerCheckResponse(
                 QuestionAnswerStatus.CORRECT
         );
@@ -93,5 +97,16 @@ public class QuestionService {
         questionTopic.setQuestion(maybeQuestion);
         questionTopic.setTopic(maybeTopic);
         questionTopicRepository.save(questionTopic);
+    }
+
+
+    public QuestionInfo getQuestionInfo(Long questionId, User user) {
+        Question maybeQuestion = questionRepository.findById(questionId)
+                .orElseThrow(() -> new QuestionNotFoundException("Question with id %d not found".formatted(questionId)));
+
+
+        return new QuestionInfo(
+                user.getSolvedQuestions().contains(maybeQuestion)
+        );
     }
 }
