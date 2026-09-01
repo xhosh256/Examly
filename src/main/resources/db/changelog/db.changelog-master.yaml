@@ -21,3 +21,7 @@ databaseChangeLog:
           file: db/changelog/sql/v2/010-insert-admin.sql
     - include:
           file: db/changelog/sql/v2/011-create-solved.sql
+    - include:
+          file: db/changelog/sql/v2/012-seed-pm-topics.sql
+    - include:
+          file: db/changelog/sql/v2/013-seed-pm-first-type.sql
