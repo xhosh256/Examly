@@ -1,7 +1,7 @@
 package cephei.dev.ExamHelper.mapper;
 
-import cephei.dev.ExamHelper.database.dto.QuestionCreateDto;
-import cephei.dev.ExamHelper.database.dto.QuestionReadDto;
+import cephei.dev.ExamHelper.database.dto.question.QuestionCreateDto;
+import cephei.dev.ExamHelper.database.dto.question.QuestionReadDto;
 import cephei.dev.ExamHelper.database.entity.Question;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

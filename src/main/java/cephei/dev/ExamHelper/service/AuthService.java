@@ -1,9 +1,8 @@
 package cephei.dev.ExamHelper.service;
 
-import cephei.dev.ExamHelper.database.dto.LoginReadDto;
-import cephei.dev.ExamHelper.database.dto.UserLoginDto;
-import cephei.dev.ExamHelper.database.dto.UserReadDto;
-import cephei.dev.ExamHelper.database.dto.UserRegisterDto;
+import cephei.dev.ExamHelper.database.dto.user.UserLoginDto;
+import cephei.dev.ExamHelper.database.dto.user.UserReadDto;
+import cephei.dev.ExamHelper.database.dto.auth.UserRegisterDto;
 import cephei.dev.ExamHelper.database.entity.Profile;
 import cephei.dev.ExamHelper.database.entity.Role;
 import cephei.dev.ExamHelper.database.entity.User;

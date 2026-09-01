@@ -1,7 +1,7 @@
 package cephei.dev.ExamHelper.service;
 
-import cephei.dev.ExamHelper.database.dto.TopicCreateDto;
-import cephei.dev.ExamHelper.database.dto.TopicReadDto;
+import cephei.dev.ExamHelper.database.dto.topic.TopicCreateDto;
+import cephei.dev.ExamHelper.database.dto.topic.TopicReadDto;
 import cephei.dev.ExamHelper.database.entity.SubjectName;
 import cephei.dev.ExamHelper.database.entity.Topic;
 import cephei.dev.ExamHelper.database.repository.TopicRepository;

@@ -1,6 +1,7 @@
 package cephei.dev.ExamHelper.service;
 
-import cephei.dev.ExamHelper.database.dto.*;
+import cephei.dev.ExamHelper.database.dto.auth.ChangePasswordDto;
+import cephei.dev.ExamHelper.database.dto.user.UserDetailsImpl;
 import cephei.dev.ExamHelper.database.entity.User;
 import cephei.dev.ExamHelper.database.repository.UserRepository;
 import cephei.dev.ExamHelper.exception.WrongPasswordException;
@@ -11,8 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Objects;
 
 @Service
 @Transactional(readOnly = true)

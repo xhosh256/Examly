@@ -1,6 +1,6 @@
 package cephei.dev.ExamHelper.service;
 
-import cephei.dev.ExamHelper.database.dto.SubjectReadDto;
+import cephei.dev.ExamHelper.database.dto.subject.SubjectReadDto;
 import cephei.dev.ExamHelper.database.entity.SubjectName;
 import cephei.dev.ExamHelper.database.repository.SubjectRepository;
 import cephei.dev.ExamHelper.mapper.SubjectMapper;

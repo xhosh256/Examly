@@ -1,8 +1,7 @@
 package cephei.dev.ExamHelper.service;
 
-import cephei.dev.ExamHelper.database.dto.ProfilePatchDto;
-import cephei.dev.ExamHelper.database.dto.ProfileReadDto;
-import cephei.dev.ExamHelper.database.dto.UserDetailsImpl;
+import cephei.dev.ExamHelper.database.dto.profile.ProfilePatchDto;
+import cephei.dev.ExamHelper.database.dto.profile.ProfileReadDto;
 import cephei.dev.ExamHelper.database.entity.Profile;
 import cephei.dev.ExamHelper.database.repository.ProfileRepository;
 import cephei.dev.ExamHelper.exception.ProfileNotFoundException;

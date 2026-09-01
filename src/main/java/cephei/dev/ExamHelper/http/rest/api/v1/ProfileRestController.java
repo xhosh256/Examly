@@ -1,9 +1,9 @@
 package cephei.dev.ExamHelper.http.rest.api.v1;
 
-import cephei.dev.ExamHelper.database.dto.ProfilePatchDto;
-import cephei.dev.ExamHelper.database.dto.ProfileReadDto;
-import cephei.dev.ExamHelper.database.dto.UserDetailsImpl;
+import cephei.dev.ExamHelper.database.dto.profile.ProfilePatchDto;
+import cephei.dev.ExamHelper.database.dto.profile.ProfileReadDto;
 import cephei.dev.ExamHelper.service.ProfileService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,7 +26,7 @@ public class ProfileRestController {
     @PatchMapping("/me")
     public ProfileReadDto updateMyProfile(
             @AuthenticationPrincipal UserDetails userDetails,
-            @RequestBody ProfilePatchDto profilePatchDto
+            @RequestBody @Valid ProfilePatchDto profilePatchDto
     ) {
         return profileService.updateMyProfile(userDetails, profilePatchDto);
     }

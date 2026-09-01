@@ -1,6 +1,6 @@
 package cephei.dev.ExamHelper.http.rest.api.v1;
 
-import cephei.dev.ExamHelper.database.dto.ChangePasswordDto;
+import cephei.dev.ExamHelper.database.dto.auth.ChangePasswordDto;
 import cephei.dev.ExamHelper.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

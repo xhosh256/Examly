@@ -1,7 +1,7 @@
 package cephei.dev.ExamHelper.mapper;
 
-import cephei.dev.ExamHelper.database.dto.ProfilePatchDto;
-import cephei.dev.ExamHelper.database.dto.ProfileReadDto;
+import cephei.dev.ExamHelper.database.dto.profile.ProfilePatchDto;
+import cephei.dev.ExamHelper.database.dto.profile.ProfileReadDto;
 import cephei.dev.ExamHelper.database.entity.Profile;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

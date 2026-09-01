@@ -1,6 +1,6 @@
 package cephei.dev.ExamHelper.http.rest.api.v1;
 
-import cephei.dev.ExamHelper.database.dto.TaskTypeReadDto;
+import cephei.dev.ExamHelper.database.dto.type.TaskTypeReadDto;
 import cephei.dev.ExamHelper.service.TaskTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

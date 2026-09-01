@@ -1,6 +1,7 @@
 package cephei.dev.ExamHelper.http.rest.api.v1;
 
-import cephei.dev.ExamHelper.database.dto.*;
+import cephei.dev.ExamHelper.database.dto.question.*;
+import cephei.dev.ExamHelper.database.dto.user.UserDetailsImpl;
 import cephei.dev.ExamHelper.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

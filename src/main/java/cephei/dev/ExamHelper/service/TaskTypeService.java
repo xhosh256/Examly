@@ -1,6 +1,6 @@
 package cephei.dev.ExamHelper.service;
 
-import cephei.dev.ExamHelper.database.dto.TaskTypeReadDto;
+import cephei.dev.ExamHelper.database.dto.type.TaskTypeReadDto;
 import cephei.dev.ExamHelper.database.entity.SubjectName;
 import cephei.dev.ExamHelper.database.repository.TaskTypeRepository;
 import cephei.dev.ExamHelper.mapper.TaskTypeMapper;

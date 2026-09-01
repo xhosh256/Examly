@@ -1,9 +1,10 @@
 package cephei.dev.ExamHelper.http.rest.api.v1;
 
-import cephei.dev.ExamHelper.database.dto.UserLoginDto;
-import cephei.dev.ExamHelper.database.dto.UserReadDto;
-import cephei.dev.ExamHelper.database.dto.UserRegisterDto;
+import cephei.dev.ExamHelper.database.dto.user.UserLoginDto;
+import cephei.dev.ExamHelper.database.dto.user.UserReadDto;
+import cephei.dev.ExamHelper.database.dto.auth.UserRegisterDto;
 import cephei.dev.ExamHelper.service.AuthService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class AuthenticationRestController {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public UserReadDto register(
-            @RequestBody UserRegisterDto userRegisterDto
+            @RequestBody @Valid UserRegisterDto userRegisterDto
     ) {
         System.out.println(userRegisterDto);
         return authService.register(userRegisterDto);

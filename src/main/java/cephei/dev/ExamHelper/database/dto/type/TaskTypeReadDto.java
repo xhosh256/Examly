@@ -1,6 +1,5 @@
-package cephei.dev.ExamHelper.database.dto;
+package cephei.dev.ExamHelper.database.dto.type;
 
-import cephei.dev.ExamHelper.database.entity.AnswerType;
 import lombok.Value;
 
 

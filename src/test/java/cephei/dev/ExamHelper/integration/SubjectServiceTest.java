@@ -1,11 +1,10 @@
 package cephei.dev.ExamHelper.integration;
 
-import cephei.dev.ExamHelper.database.dto.SubjectReadDto;
+import cephei.dev.ExamHelper.database.dto.subject.SubjectReadDto;
 import cephei.dev.ExamHelper.database.entity.Subject;
 import cephei.dev.ExamHelper.database.entity.SubjectName;
 import cephei.dev.ExamHelper.service.SubjectService;
 import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

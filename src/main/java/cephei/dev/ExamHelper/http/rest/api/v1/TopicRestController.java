@@ -1,8 +1,7 @@
 package cephei.dev.ExamHelper.http.rest.api.v1;
 
-import cephei.dev.ExamHelper.database.dto.TopicCreateDto;
-import cephei.dev.ExamHelper.database.dto.TopicReadDto;
-import cephei.dev.ExamHelper.database.repository.TopicRepository;
+import cephei.dev.ExamHelper.database.dto.topic.TopicCreateDto;
+import cephei.dev.ExamHelper.database.dto.topic.TopicReadDto;
 import cephei.dev.ExamHelper.service.TopicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

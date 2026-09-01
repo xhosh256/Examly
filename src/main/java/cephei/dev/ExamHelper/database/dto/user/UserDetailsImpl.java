@@ -1,4 +1,4 @@
-package cephei.dev.ExamHelper.database.dto;
+package cephei.dev.ExamHelper.database.dto.user;
 
 import cephei.dev.ExamHelper.database.entity.User;
 import lombok.AllArgsConstructor;

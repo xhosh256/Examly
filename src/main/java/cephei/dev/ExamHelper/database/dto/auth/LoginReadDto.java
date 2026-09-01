@@ -1,4 +1,4 @@
-package cephei.dev.ExamHelper.database.dto;
+package cephei.dev.ExamHelper.database.dto.auth;
 
 import lombok.Value;
 
